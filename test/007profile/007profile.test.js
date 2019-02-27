@@ -122,9 +122,9 @@ describe.only("User's profile validation",()=>{
 
 //Happy paths
 
-describe.only('profile api end points',()=>{
+describe('profile api end points',()=>{
     
-    context.only('checking profile of the user',()=>{
+    context('checking profile of the user',()=>{
       //console.log(global.JwtToken)
        it('post the users profile',(done)=>{
            

@@ -52,39 +52,39 @@ describe.only("011 education api",()=>{
 })
 
 //sad paths
-// describe('profile education route',()=>{
+describe('profile education route',()=>{
 //     before(done=>{
 //       done();
 //   });
-//   context('/api/profile/education',()=>{
+  context('/api/profile/education',()=>{
   
   
-//     it('Post the education data',(done)=>{
-//       request(app)
-//       .post('/api/profile/education')
-//       .send({education:[
-//         {school:'test',degree:'test',fieldofstudy:'test',from:2019-01-01}
-//       ]})
-//       .set("Authorization",global.JwtToken)
-//       .set("Accept", "application/json")
-//       .expect(400 )
-//       .expect(response =>{
-//          console.log(response.body)
-//           let{_id,school,degree,fieldofstudy,from} = response.body
-//          expect(_id).to.be.a('string');
-//           expect(school).to.be.a('string');
-//          expect(school).to.equal(school);
-//           expect(degree).to.be.a('string');
-//           expect(degree).to.equal(degree);
-//           expect(fieldofstudy).to.be.a('string');
-//           expect(fieldofstudy).to.equal(fieldofstudy);
-//           expect(from).to.be.a('date');
-//           expect(from).to.equal(from);
-//       })
-//       .end(err =>{
-//         if(err) return done(err);
-//         done();
-//       })
-//     })
-//   })
-//   })
+    it('001Post the education data',(done)=>{
+      request(app)
+      .post('/api/profile/education')
+      .send({education:[
+        {school:'test',degree:'test',fieldofstudy:'test',from:2019-01-01}
+      ]})
+      .set("Authorization",global.JwtToken)
+      .set("Accept", "application/json")
+      .expect(200 )
+      .expect(response =>{
+         console.log(response.body)
+          let{_id,school,degree,fieldofstudy,from} = response.body
+         expect(_id).to.be.a('string');
+          expect(school).to.be.a('string');
+         expect(school).to.equal(school);
+          expect(degree).to.be.a('string');
+          expect(degree).to.equal(degree);
+          expect(fieldofstudy).to.be.a('string');
+          expect(fieldofstudy).to.equal(fieldofstudy);
+          expect(from).to.be.a('date');
+          expect(from).to.equal(from);
+      })
+      .end(err =>{
+        if(err) return done(err);
+        done();
+      })
+    })
+  })
+  })
