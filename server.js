@@ -44,6 +44,7 @@ app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 app.use("/api", subpath);
+app.use(express.static("dist"));
 swagger.setAppHandler(subpath);
 swagger.setApiInfo({
   title: "example Express & Swagger API",
