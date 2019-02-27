@@ -8,6 +8,15 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 process.env.NODE_ENV || 'development';
 const app = express();
+const argv = require('minimist')(process.argv.slice(2));
+const swagger = require("swagger-node-express");
+const subpath = express();
+
+
+
+
+
+
 app.get('/test',(req,res)=>{
   res.json({msg:'test route'})
 })
@@ -34,6 +43,32 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+app.use("/api", subpath);
+swagger.setAppHandler(subpath);
+swagger.setApiInfo({
+  title: "example Express & Swagger API",
+  description: "API to do something, manage something...",
+  termsOfServiceUrl: "",
+  contact: "yourname@something.com",
+  license: "",
+  licenseUrl: ""
+});
+
+subpath.get('/', function (req, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
+swagger.configureSwaggerPaths('', 'api-docs', '');
+const domain = 'localhost';
+if(argv.domain !== undefined)
+    domain = argv.domain;
+else
+    console.log('No --domain=xxx specified, taking default hostname "localhost".');
+
+// var applicationUrl = 'http://' + domain + ':' + app.get('port');
+var applicationUrl = 'http://' + domain;
+swagger.configure(applicationUrl, '1.0.0');
+
+
 
 const port = process.env.PORT || 5000;
 
