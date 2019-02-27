@@ -12,11 +12,6 @@ const argv = require('minimist')(process.argv.slice(2));
 const swagger = require("swagger-node-express");
 const subpath = express();
 
-
-
-
-
-
 app.get('/test',(req,res)=>{
   res.json({msg:'test route'})
 })
