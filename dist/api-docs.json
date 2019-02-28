@@ -1,0 +1,69 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Sample spec",
+    "description": "Sample spec for Swagger",
+    "termsOfService": "http://swagger.io/terms/"
+  },
+  "basePath": "/api/profile",
+  "tags": [
+    {
+      "name": "Devconnector",
+      "description": "develpers social network website"
+    }
+  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/profile": {
+      "get": {
+        "tags": ["User's profile"],
+        "description": "Returns the user's profile",
+        "operationId": "Get Profiles",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Job Parameters",
+            "in": "/api/profile",
+            "description": "get the profile",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "There are no proifile",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "api/users/register":{
+        "post":{
+           "tags":["User's Registration"],
+           "description":"Register the user",
+           "operationId":"Post Users",
+           "produces":["application/json"],
+           "parameters":[
+               {
+                   "name":"New User Registration",
+                   "in":"/api/users/register",
+                   "required":true,
+                   "schema":{
+                       "$ref":"#/definitions/create"
+                   }
+               }
+           ] 
+        }
+    },
+    "api/users/login":{
+        
+    }
+  }
+}

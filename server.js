@@ -53,12 +53,15 @@ swagger.setApiInfo({
 subpath.get('/', function (req, res) {
   res.sendFile(__dirname + '/dist/index.html');
 });
+
 swagger.configureSwaggerPaths('', 'api-docs', '');
 const domain = 'localhost';
 if(argv.domain !== undefined)
     domain = argv.domain;
 else
     console.log('No --domain=xxx specified, taking default hostname "localhost".');
+
+
 
 // var applicationUrl = 'http://' + domain + ':' + app.get('port');
 var applicationUrl = 'http://' + domain;
