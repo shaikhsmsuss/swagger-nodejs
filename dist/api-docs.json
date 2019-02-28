@@ -17,15 +17,93 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
+    "api/users/register": {
+      "post": {
+        "tags": ["User's Registration"],
+        "summary": "Registration of the new user in the database",
+        "description": "Register the user",
+        "operationId": "RegistrationUser",
+        "requestBody": {
+          "required": true
+        },
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "New User Registration",
+            "in": "/api/users/register",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Email already exists"
+          },
+          "200": {
+            "description": "User registered successfully"
+          }
+        }
+      }
+    },
+    "api/users/login": {
+      "post": {
+        "tags": ["User's Login"],
+        "summary": "Login the user from database",
+        "description": "User's Login",
+        "operationId": "LoginUser",
+        "requestBody": {
+          "required": true
+        },
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User Login ",
+            "in": "/api/users/login",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "User does not exist"
+          },
+          "200": {
+            "description": "login successfully"
+          }
+        }
+      }
+    },
+    "/api/users/current": {
+      "get": {
+        "tags": ["Current Logged in User"],
+        "operationId": "Get Profiles",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Current User",
+            "in": "/api/users/current"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "There is no profile for this user"
+          }
+        }
+      }
+    },
     "/api/profile": {
       "get": {
-        "tags": ["User's profile"],
+        "tags": ["Get User's profile"],
         "description": "Returns the user's profile",
         "operationId": "Get Profiles",
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "Job Parameters",
+            "name": "All User's",
             "in": "/api/profile",
             "description": "get the profile",
             "required": true,
@@ -36,34 +114,80 @@
         ],
         "responses": {
           "200": {
-            "description": "There are no proifile",
+            "description": "There are no proifile for this user"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Create the User's profile data"],
+        "description": "Returns the user's profile",
+        "operationId": "PostProfiles",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User's Profile",
+            "in": "/api/profile",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/response"
+              "$ref": "#/definitions/create"
             }
+          }
+        ],
+        "responses": "200"
+      }
+    },
+    "api/profile/all": {
+      "get": {
+        "tags": ["Get Profiles of all the user's"],
+        "description": "User's profile",
+        "operationId": "User'sProfile",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User Profile ",
+            "in": "/api/profile/all",
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "There are no profiles"
+          },
+          "200": {
+            "description": "All profiles"
           }
         }
       }
     },
-    "api/users/register":{
-        "post":{
-           "tags":["User's Registration"],
-           "description":"Register the user",
-           "operationId":"Post Users",
-           "produces":["application/json"],
-           "parameters":[
-               {
-                   "name":"New User Registration",
-                   "in":"/api/users/register",
-                   "required":true,
-                   "schema":{
-                       "$ref":"#/definitions/create"
-                   }
-               }
-           ] 
+    "api/profile/experience": {
+      "post": {
+        "tags": ["Post User's experience details"],
+        "summary": "Creating User's experience data",
+        "description": "User's Profile",
+        "operationId": "UserProfile",
+        "requestBody": {
+          "required": true
+        },
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User Profile route ",
+            "in": "/api/profile/experience",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Errors creating profile"
+          },
+          "200": {
+            "description": "Profile created  successfully"
+          }
         }
-    },
-    "api/users/login":{
-        
+      }
     }
   }
 }
