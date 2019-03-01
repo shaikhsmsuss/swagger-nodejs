@@ -13,7 +13,9 @@
       "description": "develpers social network website"
     }
   ],
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "securityDefinitions": {
     "bearerAuth": {
       "type": "http",
@@ -21,15 +23,22 @@
       "bearerFormat": "JWT"
     }
   },
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/api/users/register": {
       "post": {
-        "tags": ["User's Registration"],
+        "tags": [
+          "User's Registration"
+        ],
         "summary": "Create new user registration",
-        "required": ["name", "password", "email"],
-
+        "requestBody": {
+          "required": true
+        },
         "operationId": "creatUser",
         "description": "Each user who needs to access to devconnector should signup using their valid email address and  set a password for authorize access",
         "parameters": [
@@ -51,12 +60,6 @@
               "password2": {
                 "type": "string"
               }
-            },
-            "example": {
-              "name": "devconnector",
-              "email_address": "test@devconnector.com",
-              "password": 123456,
-              "password2": 123456
             }
           }
         ]
@@ -64,7 +67,9 @@
     },
     "/api/users/login": {
       "post": {
-        "tags": ["User's Login"],
+        "tags": [
+          "User's Login"
+        ],
         "summary": "Authorize and sign in the user ",
         "requestBody": {
           "required": true
@@ -82,7 +87,9 @@
             }
           }
         },
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "/api/users/current": {
@@ -90,9 +97,13 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Current sign in User"],
+        "tags": [
+          "Current sign in User"
+        ],
         "operationId": "Get Profiles",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "Current User",
@@ -106,11 +117,15 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Get User's profile"],
+        "tags": [
+          "Get User's profile"
+        ],
         "summary": "Get all user's profile data",
         "description": "Returns the user's profile",
         "operationId": "Get Profiles",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "All User's",
@@ -123,7 +138,9 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Create the User's profile data"],
+        "tags": [
+          "Create the User's profile data"
+        ],
         "requestBody": {
           "required": true
         },
@@ -149,15 +166,21 @@
             }
           }
         },
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "/api/profile/all": {
       "get": {
-        "tags": ["Get Profiles of all the user's"],
+        "tags": [
+          "Get Profiles of all the user's"
+        ],
         "description": "User's profile",
         "operationId": "User'sProfile",
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "api/profile/experience": {
@@ -165,7 +188,9 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Post User's experience details"],
+        "tags": [
+          "Post User's experience details"
+        ],
         "summary": "Creating User's experience data",
         "requestBody": {
           "required": true
@@ -198,7 +223,9 @@
             }
           }
         },
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "api/profile/education": {
@@ -206,7 +233,9 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Post User's education details"],
+        "tags": [
+          "Post User's education details"
+        ],
         "summary": "Creating User's education data",
         "requestBody": {
           "required": true
@@ -239,7 +268,9 @@
             }
           }
         },
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "/api/profile/experience/:exp_id": {
@@ -247,7 +278,9 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Delete user experiene  by exp_Id"],
+        "tags": [
+          "Delete user experiene  by exp_Id"
+        ],
         "summary": "User can delete the experience ",
         "description": "Authorize access",
         "operationId": "UserProfile",
@@ -263,14 +296,18 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/profile/education/:edu_id": {
       "delete": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Delete user's education  by edu_Id"],
+        "tags": [
+          "Delete user's education  by edu_Id"
+        ],
         "summary": "User can delete the education ",
         "description": "Authorize access",
         "operationId": "UserProfile",
@@ -286,14 +323,18 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/profile": {
       "delete": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Delete user's complete profile"],
+        "tags": [
+          "Delete user's complete profile"
+        ],
         "summary": "User can delete their complete profile ",
         "description": "Authorize access",
         "operationId": "UserProfile",
@@ -309,21 +350,29 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/post": {
       "get": {
-        "tags": ["Get Posts"],
+        "tags": [
+          "Get Posts"
+        ],
         "summary": "Here User can upload posts",
         "description": "User's Post route",
         "operationId": "UserPosts"
       },
-      "produces": ["application/json"],
+      "produces": [
+        "application/json"
+      ],
       "post": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Upload Posts"],
+        "tags": [
+          "Upload Posts"
+        ],
         "description": "Here only Authorize user can upload posts",
         "operationId": "postRoute",
         "parameters": [
@@ -337,7 +386,9 @@
             "description": "Post some data"
           }
         ],
-        "produces": ["application/json"]
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "api/post/:id": {
@@ -345,17 +396,23 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Find posts"],
+        "tags": [
+          "Find posts"
+        ],
         "summary": "Here user's can find posts by postsId",
         "description": "Access public",
         "operationId": "UserPosts"
       },
-      "produces": ["application/json"],
+      "produces": [
+        "application/json"
+      ],
       "delete": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Delete Posts"],
+        "tags": [
+          "Delete Posts"
+        ],
         "summary": "Here authorize user can delete posts",
         "description": "Authorize access",
         "operationId": "UserPosts",
@@ -377,7 +434,9 @@
         "security": {
           "Bearer": []
         },
-        "tags": ["Like posts"],
+        "tags": [
+          "Like posts"
+        ],
         "summary": "Authorized logged in user can like the posts",
         "description": "Authorize acc",
         "operationId": "UserPosts",
@@ -393,13 +452,17 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/post/unlike/:id": {
       "post": {
         "security:definitions": null,
         "Bearer": [],
-        "tags": ["Unlike posts"],
+        "tags": [
+          "Unlike posts"
+        ],
         "summary": "Authorized logged in user can unlike the posts",
         "description": "Authorize access",
         "operationId": "UserPosts",
@@ -415,14 +478,18 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/post/comment/:id": {
       "post": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Comment on posts"],
+        "tags": [
+          "Comment on posts"
+        ],
         "summary": "Authorized logged in user can comment the posts",
         "description": "Authorize access",
         "operationId": "UserPosts",
@@ -438,14 +505,18 @@
           }
         ]
       },
-      "produces": ["application/json"]
+      "produces": [
+        "application/json"
+      ]
     },
     "api/post/comment/:id/:comment_id": {
       "post": {
         "security": {
           "Bearer": []
         },
-        "tags": ["Comment on posts"],
+        "tags": [
+          "Comment on posts"
+        ],
         "summary": "Authorized logged in user can comment the posts",
         "description": "Authorize access",
         "operationId": "UserPosts",
@@ -461,8 +532,40 @@
           }
         ]
       },
-      "produces": ["application/json"],
+      "produces": [
+        "application/json"
+      ],
       "definitions": null
+    },
+    "SignupUserRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name of the new user"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the new user"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password of the new user",
+          "format": "password",
+          "x-obfuscated": true
+        }
+      },
+      "required": [
+        "name",
+        "password",
+        "email"
+      ],
+      "example": {
+        "name": "devconnector",
+        "email_address": "test@devconnector.com",
+        "password": 123456,
+        "password2": 123456
+      }
     }
   }
 }
