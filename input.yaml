@@ -1,4 +1,3 @@
----
 openapi: 3.0.0
 info:
   version: 1.0.0
@@ -24,212 +23,68 @@ paths:
   /api/users/register:
     post:
       tags:
-        - User's Registration
-      summary: Create new user registration
+        - "user"
+      summary: "Pleae Sign up"
+      description: Create a new user in the system
       requestBody:
-        required: true
-      operationId: creatUser
-      description: Each user who needs to access to devconnector should signup
-        using their valid email address and  set a password for authorize access
-      parameters:
-        - name: User
-          in: body
-          required: true
-          schema:
-            type: object
-            name:
-              type: string
-            email:
-              type: string
-            password:
-              type: string
-            password2:
-              type: string
-          example:
-              name: devconnector
-              email: test@devconnector.com
-              password: 123456
-              password2: 123456    
-
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+            example:
+              objectExample:
+                $ref: "#/components/examples/sampleUser"
   /api/users/login:
     post:
       tags:
-        - User's Login
-      summary: "Authorize and sign in the user "
+        - "user"
+      summary: "Please Sign in"
+      description: login the user in the system
       requestBody:
-        required: true
-      description: User's Login
-      operationId: loginUser
-      parameters:
-        schema:
-          type: object
-          email:
-            type: string
-          password:
-            type: string
-      produces:
-        - application/json
-  /api/users/current:
-    get:
-      security:
-        Bearer: []
-      tags:
-        - Current sign in User
-      operationId: Get Profiles
-      produces:
-        - application/json
-      parameters:
-        - name: Current User
-          in: "/api/users/current"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+            example:
+              objectExample:
+                $ref: "#/components/examples/sampleUser"
   /api/profile:
     get:
       security:
         Bearer: []
       tags:
-        - Get User's profile
-      summary: Get all user's profile data
-      description: Returns the user's profile
-      operationId: Get Profiles
-      produces:
-        - application/json
-      parameters:
-        - name: All User's
-          in: "/api/profile"
-          description: get the profile
+        - "profile"
+      summary: "get user's profile "
+      description: Retrieve all the users
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              examples: {}
     post:
       security:
         Bearer: []
       tags:
-        - Create the User's profile data
+        - "profile"
+      summary: "Create Profile data"
+      description: User can create their profile data
       requestBody:
-        required: true
-      description: Returns the user's profile
-      operationId: PostProfiles
-      parameters:
-        schema:
-          type: object
-          handle:
-            type: string
-          company:
-            type: string
-          website:
-            type: string
-          location:
-            type: string
-          bio:
-            type: string
-      produces:
-        - application/json
-  /api/profile/all:
-    get:
-      tags:
-        - Get Profiles of all the user's
-      description: User's profile
-      operationId: User'sProfile
-      produces:
-        - application/json
-  api/profile/experience:
-    post:
-      security:
-        Bearer: []
-      tags:
-        - Post User's experience details
-      summary: Creating User's experience data
-      requestBody:
-        required: true
-      description: User's Profile
-      operationId: UserProfile
-      schema:
-        type: object
-        properties:
-          title:
-            type: string
-          company:
-            type: string
-          lo:
-            type: string
-          from:
-            type: date
-          to:
-            type: date
-          current:
-            type: string
-          description:
-            type: string
-      produces:
-        - application/json
-  api/profile/education:
-    post:
-      security:
-        Bearer: []
-      tags:
-        - Post User's education details
-      summary: Creating User's education data
-      requestBody:
-        required: true
-      description: Create User's Profile
-      operationId: UserProfile
-      schema:
-        type: object
-        properties:
-          school:
-            type: string
-          degree:
-            type: string
-          fieldofstudy:
-            type: string
-          from:
-            type: date
-          to:
-            type: date
-          current:
-            type: string
-          description:
-            type: string
-      produces:
-        - application/json
-  /api/profile/experience/:exp_id:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Profile"
+            example:
+              objectExample:
+                $ref: "#/components/examples/Userprofile"
+
     delete:
       security:
         Bearer: []
       tags:
-        - Delete user experiene  by exp_Id
-      summary: "User can delete the experience "
-      description: Authorize access
-      operationId: UserProfile
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: number
-          required: true
-          description: The user's experience ID.
-    produces:
-      - application/json
-  api/profile/education/:edu_id:
-    delete:
-      security:
-        Bearer: []
-      tags:
-        - Delete user's education  by edu_Id
-      summary: "User can delete the education "
-      description: Authorize access
-      operationId: UserProfile
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: number
-          required: true
-          description: The profile education ID.
-    produces:
-      - application/json
-  api/profile:
-    delete:
-      security:
-        Bearer: []
-      tags:
-        - Delete user's complete profile
+        - "profile"
       summary: "User can delete their complete profile "
       description: Authorize access
       operationId: UserProfile
@@ -242,38 +97,108 @@ paths:
           description: Delete complete profile of the user.
     produces:
       - application/json
-  api/post:
-    get:
-      tags:
-        - Get Posts
-      summary: Here User can upload posts
-      description: User's Post route
-      operationId: UserPosts
-    produces:
-      - application/json
+  /api/profile/experience:
     post:
       security:
         Bearer: []
       tags:
-        - Upload Posts
-      description: Here only Authorize user can upload posts
-      operationId: postRoute
+        - "profile"
+      summary: Creating User's experience data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Experience"
+            example:
+              objectExample:
+                $ref: "#/components/examples/Experience"
+  /api/profile/education:
+    post:
+      security:
+        Bearer: []
+      tags:
+        - "profile"
+      summary: Creating User's education data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Education"
+            example:
+              objectExample:
+                $ref: "#/components/examples/Education"
+
+  /api/profile/experience/:exp_id:
+    delete:
+      security:
+        Bearer: []
+      tags:
+        - "profile"
+      summary: "User can delete the experience "
+      description: Authorize access
       parameters:
         - in: path
           name: id
           schema:
-            type: string
+            type: number
           required: true
-          description: Post some data
-      produces:
-        - application/json
-  api/post/:id:
+          description: The user's experience ID.
+    produces:
+      - application/json
+  /api/profile/education/:edu_id:
+    delete:
+      security:
+        Bearer: []
+      tags:
+        - "profile"
+      summary: "User can delete the education data "
+      description: Authorize access
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: The profile education ID.
+    produces:
+      - application/json
+
+  /api/post:
+    get:
+      tags:
+        - "Posts"
+      summary: Get all the posts by user
+      description: Authorize access
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              examples: {}
+    post:
+      security:
+        Bearer: []
+      tags:
+        - "Posts"
+      summary: write a post
+      description: The authorize user can make a post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Posts"
+            example:
+              objectExample:
+                $ref: "#/components/examples/Post"
+  /api/post/:id:
     get:
       security:
         Bearer: []
       tags:
-        - Find posts
-      summary: Here user's can find posts by postsId
+        - "Posts"
+      summary: find a specific post by postId
       description: Access public
       operationId: UserPosts
     produces:
@@ -282,8 +207,8 @@ paths:
       security:
         Bearer: []
       tags:
-        - Delete Posts
-      summary: Here authorize user can delete posts
+        - "Posts"
+      summary: delete the user's post
       description: Authorize access
       operationId: UserPosts
       parameters:
@@ -293,13 +218,13 @@ paths:
             type: number
           required: true
           description: Find posts with specified ID
-  api/post/like/:id:
+  /api/post/like/:id:
     post:
       security:
         Bearer: []
       tags:
-        - Like posts
-      summary: Authorized logged in user can like the posts
+        - "Posts"
+      summary: like the user's post
       description: Authorize acc
       operationId: UserPosts
       parameters:
@@ -311,13 +236,13 @@ paths:
           description: The comment ID.
     produces:
       - application/json
-  api/post/unlike/:id:
+  /api/post/unlike/:id:
     post:
-      security:definitions:
-      Bearer: []
+      security:
+        Bearer: []
       tags:
-        - Unlike posts
-      summary: Authorized logged in user can unlike the posts
+        - "Posts"
+      summary: Unlike the user's post
       description: Authorize access
       operationId: UserPosts
       parameters:
@@ -329,13 +254,13 @@ paths:
           description: The like ID.
     produces:
       - application/json
-  api/post/comment/:id:
+  /api/post/comment/:id:
     post:
       security:
         Bearer: []
       tags:
-        - Comment on posts
-      summary: Authorized logged in user can comment the posts
+        - "Posts"
+      summary: write a comment on the user's post
       description: Authorize access
       operationId: UserPosts
       parameters:
@@ -347,45 +272,140 @@ paths:
           description: The comment ID.
     produces:
       - application/json
-  api/post/comment/:id/:comment_id:
-    post:
-      security:
-        Bearer: []
-      tags:
-        - Comment on posts
-      summary: Authorized logged in user can comment the posts
-      description: Authorize access
-      operationId: UserPosts
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: number
-          required: true
-          description: The comment ID.
-    produces:
-      - application/json
-    definitions:
-  SignupUserRequest:
-    type: object
-    properties:
-      name:
-        type: string
-        description: name of the new user
-      email:
-        type: string
-        description: Email address of the new user
-      password:
-        type: string
-        description: Password of the new user
-        format: password
-        x-obfuscated: true
-    required:
-      - name
-      - password
-      - email
-    example:
-      name: devconnector
-      email_address: test@devconnector.com
-      password: 123456
-      password2: 123456
+  definitions:
+components:
+  schemas:
+    User: # Schema name
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example: # Object-level example
+        name: Test
+        email: test@testt.com
+        password: 123
+    Profile:
+      type: object
+      properties:
+        handle:
+          type: string
+        company:
+          type: string
+        website:
+          type: string
+        location:
+          type: string
+        bio:
+          type: string
+        status:
+          type: string
+      example:
+        handle: test
+        company: test
+        website: www.test.com
+        location: test
+        bio: test
+        status: test
+    Experience:
+      type: object
+      properties:
+        title:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        from:
+          type: date
+        to:
+          type: date
+        current:
+          type: string
+        description:
+          type: string
+      example:
+        title: test
+        company: test
+        location: test
+        from: 02-03-2018
+        to: 02-03-2019
+        current: developer
+        description: test
+    Education:
+      type: object
+      properties:
+        school:
+          type: string
+        degree:
+          type: string
+        fieldofstudy:
+          type: string
+        from:
+          type: date
+        to:
+          type: date
+        current:
+          type: string
+        description:
+          type: string
+      example:
+        school: test
+        degree: test
+        fieldofstudy: test
+        from: 02-03-2018
+        to: 02-03-2019
+        current: developer
+        description: test
+    Posts:
+      type: object
+      properties:
+        name:
+          type: string
+        text:
+          type: string
+        like:
+          type: number
+        unlike:
+          type: number
+  examples:
+    sampleUser:
+      value:
+        name: test
+        email: test@gmail.com
+        password: 123
+    Userprofile:
+      value:
+        handle: test
+        company: test
+        website: www.test.com
+        location: test
+        bio: test
+        status: test
+    Experience:
+      value:
+        title: test
+        company: test
+        location: test
+        from: 02-03-2018
+        to: 02-03-2019
+        current: developer
+        description: test
+    Education:
+      value:
+        school: test
+        degree: test
+        fieldofstudy: test
+        from: 02-03-2018
+        to: 02-03-2019
+        current: developer
+        description: test
+    Post:
+      value:
+        name: test
+        text: this is the first post
+        like: 2
+        unlike: 1
